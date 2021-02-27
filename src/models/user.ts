@@ -1,9 +1,22 @@
-import { client } from "../config/mariadb.ts";
+import {client} from '../config/mariadb.ts';
+import {UsuarioDTO} from '../dto/usuario.ts';
 
 export class UsuariosModel {
-    async listar() {
-        const showAll = await client.execute('select * from user');
+  async listar() : Promise<UsuarioDTO[]> {
+    const showAll = await client.execute('select * from user');
 
-        return showAll.rows;
-    }
+    return showAll.rows as UsuarioDTO[];
+  }
+
+  async crear(usuario: UsuarioDTO) {
+    return await client.execute(`insert into 
+            user(nombre,apellido,celular,correo,contrasenia) 
+            values(?,?,?,?,?)`, [
+      usuario.nombre,
+      usuario.apellido,
+      usuario.celular,
+      usuario.correo,
+      usuario.contrasenia,
+    ]);
+  }
 }
