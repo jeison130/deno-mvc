@@ -1,9 +1,10 @@
-import {Client} from 'https://deno.land/x/mysql/mod.ts';
+import {mysql} from '../modules.ts';
+const { Client } = mysql;
 
 export const client = await new Client().connect({
-    hostname: 'localhost',
-    username: 'root',
-    db: 'user',
-    password: '12345678',
-    port: 4306,
+  hostname: 'localhost',
+  username: 'root',
+  db: 'user',
+  password: '12345678',
+  port: 5306,
 });
