@@ -7,6 +7,8 @@ const usuarioController = new UsuarioController();
 
 router
   .get('/usuarios', usuarioController.listar)
-  .post('/usuarios', usuarioController.crear);
+  .post('/usuarios', usuarioController.crear)
+  .put('/usuarios/:id', usuarioController.eliminar)
+  .delete('/usuarios/:id', usuarioController.eliminar);
 
 export default router
